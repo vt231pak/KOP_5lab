@@ -1,0 +1,12 @@
+{
+  "out": "./docs",
+  "entryPoints": ["src"],
+  "entryPointStrategy": "expand",
+  "exclude": [
+    "**/*.stories.*",
+    "**/node_modules/**"
+  ],
+  "includeVersion": true,
+  "readme": "README.md"
+}
+
