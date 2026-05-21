@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { DifficultyButton, SettingsForm } from '../components';
+import { DifficultyButton } from '../components';
 import { useGameSettings } from '../hooks';
 import { setCurrentPage, setDifficulty } from '../store/slices/gameSlice';
 
@@ -12,7 +12,7 @@ export const StartPage: React.FC<StartPageProps> = ({
   onSelectDifficulty,
 }) => {
   const dispatch = useDispatch();
-  const { settings, updateDifficultySetting } = useGameSettings();
+  const { settings } = useGameSettings();
   const [showSettings, setShowSettings] = useState(false);
 
   const handleDifficultySelect = (level: 'easy' | 'medium' | 'hard') => {
@@ -50,23 +50,12 @@ export const StartPage: React.FC<StartPageProps> = ({
         />
       </div>
 
-      <button 
+      <button
         className="settings-btn"
         onClick={() => setShowSettings(!showSettings)}
       >
         {showSettings ? 'Закрити налаштування' : 'Налаштування'}
       </button>
-
-      {showSettings && (
-        <div className="settings-container">
-          <SettingsForm
-            initialSettings={settings}
-            onSave={() => setShowSettings(false)}
-            onClose={() => setShowSettings(false)}
-            onUpdateDifficulty={updateDifficultySetting}
-          />
-        </div>
-      )}
     </div>
   );
 };

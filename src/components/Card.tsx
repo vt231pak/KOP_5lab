@@ -1,5 +1,14 @@
 import React from 'react';
 
+/**
+ * Props for the Card component
+ * @interface CardProps
+ * @property {string} [emoji='😊'] - The emoji to display on the card back
+ * @property {boolean} [isFlipped=false] - Whether the card is currently flipped
+ * @property {boolean} [isMatched=false] - Whether the card has been matched with its pair
+ * @property {Function} [onClick] - Callback function triggered when card is clicked
+ * @property {'slow' | 'normal' | 'fast'} [animationSpeed='normal'] - Speed of the flip animation
+ */
 interface CardProps {
   emoji?: string;
   isFlipped?: boolean;
@@ -8,6 +17,24 @@ interface CardProps {
   animationSpeed?: 'slow' | 'normal' | 'fast';
 }
 
+/**
+ * Card Component - A single memory game card
+ *
+ * Renders a flippable card that displays an emoji. The card can be clicked
+ * to trigger the flip animation. Used as a basic building block in the GameGrid.
+ *
+ * @component
+ * @param {CardProps} props - Component props
+ * @returns {React.ReactElement} The card element
+ *
+ * @example
+ * // Unflipped card
+ * <Card emoji="🎮" isFlipped={false} onClick={handleClick} />
+ *
+ * @example
+ * // Matched card (stays visible and grayed out)
+ * <Card emoji="⭐" isMatched={true} isFlipped={true} />
+ */
 export const Card: React.FC<CardProps> = ({
   emoji = '😊',
   isFlipped = false,

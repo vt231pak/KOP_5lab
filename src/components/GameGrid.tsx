@@ -1,17 +1,54 @@
 import { Card } from './Card';
 
+/**
+ * Card object structure for the grid
+ * @interface CardObject
+ * @property {number} id - Unique identifier for the card
+ * @property {string} emoji - The emoji displayed on the card
+ * @property {boolean} isFlipped - Whether the card is flipped/revealed
+ * @property {boolean} isMatched - Whether the card has been matched
+ */
+interface CardObject {
+  id: number;
+  emoji: string;
+  isFlipped: boolean;
+  isMatched: boolean;
+}
+
+/**
+ * Props for the GameGrid component
+ * @interface GameGridProps
+ * @property {CardObject[]} [cards=[]] - Array of card objects to render
+ * @property {Function} [onCardClick] - Callback fired when a card is clicked
+ * @property {'slow' | 'normal' | 'fast'} [animationSpeed='normal'] - Card animation speed
+ */
 interface GameGridProps {
-  cards?: Array<{
-    id: number;
-    emoji: string;
-    isFlipped: boolean;
-    isMatched: boolean;
-  }>;
+  cards?: CardObject[];
   onCardClick?: (cardId: number) => void;
   animationSpeed?: 'slow' | 'normal' | 'fast';
 }
 
-export const GameGrid: React.FC<GameGridProps> = ({ 
+/**
+ * GameGrid Component - Responsive grid of game cards
+ *
+ * Renders a responsive grid that automatically calculates the optimal number
+ * of columns based on the number of cards. Prefers square layouts when possible,
+ * otherwise creates a balanced horizontal layout. Each card can be clicked to
+ * trigger game logic.
+ *
+ * @component
+ * @param {GameGridProps} props - Component props
+ * @returns {React.ReactElement} The game grid element
+ *
+ * @example
+ * // Easy game (8 cards in 2x4 grid)
+ * <GameGrid cards={easyCards} onCardClick={handleCardClick} />
+ *
+ * @example
+ * // Hard game (12 cards in 3x4 grid)
+ * <GameGrid cards={hardCards} animationSpeed="fast" />
+ */
+export const GameGrid: React.FC<GameGridProps> = ({
   cards = [],
   onCardClick,
   animationSpeed = 'normal',

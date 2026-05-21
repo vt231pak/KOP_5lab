@@ -7,6 +7,7 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { UserProvider } from './contexts/UserContext';
 import { setCurrentPage, setGameResults } from './store/slices/gameSlice';
 import { startGame as startGameStats, updateStats, endGame } from './store/slices/statsSlice';
+import CookieConsentBanner from './components/CookieConsent';
 import type { RootState } from './store';
 
 function App() {
@@ -143,6 +144,7 @@ function App() {
           />
         )}
       </div>
+      <CookieConsentBanner />
     </UserProvider>
   );
 }
